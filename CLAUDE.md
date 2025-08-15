@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**📋 Development Plan**: See [PLAN.md](./PLAN.md) for the complete phase-by-phase development roadmap.
+
 ## Project Overview
 
 tan-chirper is a Twitter-like social media application with 141 character limit for posts. This is a modern, type-safe full-stack TypeScript application.

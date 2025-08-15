@@ -1,0 +1,551 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-08-14T20:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "env_base",
+      "_type": "environment",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3001",
+        "access_token": "",
+        "refresh_token": "",
+        "profile_id": "",
+        "chirp_id": "",
+        "username": "testuser"
+      },
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1660000000000
+    },
+    {
+      "_id": "wrk_main",
+      "_type": "workspace",
+      "name": "tan-chirper API",
+      "description": "Twitter-like social media API with 141-character chirps",
+      "scope": "collection"
+    },
+    {
+      "_id": "fld_auth",
+      "_type": "request_group",
+      "name": "🔐 Authentication",
+      "description": "User registration and login endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1000,
+      "parentId": "wrk_main"
+    },
+    {
+      "_id": "req_register",
+      "_type": "request",
+      "name": "Register User",
+      "description": "Create a new user account with email and password",
+      "url": "{{ _.base_url }}/api/auth/register",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"{{ _.username }}\",\n  \"display_name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\",\n  \"bio\": \"This is my test bio\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -900,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_auth"
+    },
+    {
+      "_id": "req_login",
+      "_type": "request",
+      "name": "Login User",
+      "description": "Authenticate user and get access tokens",
+      "url": "{{ _.base_url }}/api/auth/login",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"password123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -800,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_auth"
+    },
+    {
+      "_id": "fld_profiles",
+      "_type": "request_group",
+      "name": "👤 Profiles",
+      "description": "User profile management endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -700,
+      "parentId": "wrk_main"
+    },
+    {
+      "_id": "req_get_my_profile",
+      "_type": "request",
+      "name": "Get My Profile",
+      "description": "Get current user's profile (requires authentication)",
+      "url": "{{ _.base_url }}/api/profiles/me",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -600,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_profiles"
+    },
+    {
+      "_id": "req_update_my_profile",
+      "_type": "request",
+      "name": "Update My Profile",
+      "description": "Update current user's profile information",
+      "url": "{{ _.base_url }}/api/profiles/me",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"display_name\": \"Updated Test User\",\n  \"bio\": \"Updated bio content\",\n  \"avatar_url\": \"\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -500,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_profiles"
+    },
+    {
+      "_id": "req_get_profile_by_id",
+      "_type": "request",
+      "name": "Get Profile by ID",
+      "description": "Get public profile by profile ID",
+      "url": "{{ _.base_url }}/api/profiles/{{ _.profile_id }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -400,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_profiles"
+    },
+    {
+      "_id": "req_get_profile_by_username",
+      "_type": "request",
+      "name": "Get Profile by Username",
+      "description": "Get public profile by username",
+      "url": "{{ _.base_url }}/api/profiles/username/{{ _.username }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -300,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_profiles"
+    },
+    {
+      "_id": "fld_chirps",
+      "_type": "request_group",
+      "name": "🐦 Chirps",
+      "description": "Chirp creation, retrieval, and management",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -200,
+      "parentId": "wrk_main"
+    },
+    {
+      "_id": "req_create_chirp",
+      "_type": "request",
+      "name": "Create Chirp",
+      "description": "Create a new chirp (requires authentication, max 141 characters)",
+      "url": "{{ _.base_url }}/api/chirps",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"content\": \"Hello, this is my first chirp! 🐦 Testing the API with Insomnia.\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": -100,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_chirps"
+    },
+    {
+      "_id": "req_get_chirps_feed",
+      "_type": "request",
+      "name": "Get Chirps Feed",
+      "description": "Get paginated chirps feed (shows like status if authenticated)",
+      "url": "{{ _.base_url }}/api/chirps",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "20",
+          "description": "Number of chirps to return (default: 20)"
+        },
+        {
+          "name": "offset",
+          "value": "0",
+          "description": "Pagination offset (default: 0)"
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": 0,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_chirps"
+    },
+    {
+      "_id": "req_get_chirp_by_id",
+      "_type": "request",
+      "name": "Get Chirp by ID",
+      "description": "Get specific chirp with profile and like information",
+      "url": "{{ _.base_url }}/api/chirps/{{ _.chirp_id }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": 100,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_chirps"
+    },
+    {
+      "_id": "req_update_chirp",
+      "_type": "request",
+      "name": "Update Chirp",
+      "description": "Update chirp content (requires authentication, owner only)",
+      "url": "{{ _.base_url }}/api/chirps/{{ _.chirp_id }}",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"content\": \"Updated chirp content! This has been edited.\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": 200,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_chirps"
+    },
+    {
+      "_id": "req_delete_chirp",
+      "_type": "request",
+      "name": "Delete Chirp",
+      "description": "Delete chirp (requires authentication, owner only)",
+      "url": "{{ _.base_url }}/api/chirps/{{ _.chirp_id }}",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": 300,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_chirps"
+    },
+    {
+      "_id": "req_get_chirps_by_profile",
+      "_type": "request",
+      "name": "Get Chirps by Profile",
+      "description": "Get chirps created by a specific profile",
+      "url": "{{ _.base_url }}/api/chirps/profile/{{ _.profile_id }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "20",
+          "description": "Number of chirps to return (default: 20)"
+        },
+        {
+          "name": "offset",
+          "value": "0",
+          "description": "Pagination offset (default: 0)"
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": 400,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_chirps"
+    },
+    {
+      "_id": "fld_likes",
+      "_type": "request_group",
+      "name": "❤️ Likes",
+      "description": "Like and unlike chirps, get like statistics",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": 500,
+      "parentId": "wrk_main"
+    },
+    {
+      "_id": "req_toggle_like",
+      "_type": "request",
+      "name": "Toggle Like/Unlike",
+      "description": "Like or unlike a chirp (requires authentication)",
+      "url": "{{ _.base_url }}/api/likes",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"chirp_id\": \"{{ _.chirp_id }}\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": 600,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_likes"
+    },
+    {
+      "_id": "req_get_like_stats",
+      "_type": "request",
+      "name": "Get Like Stats",
+      "description": "Get like count and status for a chirp",
+      "url": "{{ _.base_url }}/api/likes/chirp/{{ _.chirp_id }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.access_token }}"
+      },
+      "metaSortKey": 700,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_likes"
+    },
+    {
+      "_id": "req_get_like_users",
+      "_type": "request",
+      "name": "Get Users Who Liked",
+      "description": "Get list of users who liked a specific chirp",
+      "url": "{{ _.base_url }}/api/likes/chirp/{{ _.chirp_id }}/users",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "20",
+          "description": "Number of likes to return (default: 20)"
+        },
+        {
+          "name": "offset",
+          "value": "0",
+          "description": "Pagination offset (default: 0)"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 800,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_likes"
+    },
+    {
+      "_id": "req_get_user_likes",
+      "_type": "request",
+      "name": "Get User's Liked Chirps",
+      "description": "Get chirps liked by a specific user",
+      "url": "{{ _.base_url }}/api/likes/profile/{{ _.profile_id }}",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "20",
+          "description": "Number of likes to return (default: 20)"
+        },
+        {
+          "name": "offset",
+          "value": "0",
+          "description": "Pagination offset (default: 0)"
+        }
+      ],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 900,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "fld_likes"
+    },
+    {
+      "_id": "req_health_check",
+      "_type": "request",
+      "name": "Health Check",
+      "description": "Check if the API server is running",
+      "url": "{{ _.base_url }}/health",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": 1000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "parentId": "wrk_main"
+    }
+  ]
+}
