@@ -60,23 +60,23 @@ function HomePage() {
               />
               
               {/* Quick Stats */}
-              <div className="bg-white rounded-lg border p-4">
-                <h3 className="font-semibold text-gray-900 mb-3">Quick Stats</h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Your Chirps</span>
-                    <span className="font-medium">{feedData?.total || 0}</span>
-                  </div>
-                  <div className="flex justify-between opacity-50">
-                    <span className="text-gray-600">Following</span>
-                    <span className="font-medium">0</span>
-                  </div>
-                  <div className="flex justify-between opacity-50">
-                    <span className="text-gray-600">Followers</span>
-                    <span className="font-medium">0</span>
-                  </div>
-                </div>
-              </div>
+              {/*<div className="bg-white rounded-lg border p-4">*/}
+              {/*  <h3 className="font-semibold text-gray-900 mb-3">Quick Stats</h3>*/}
+              {/*  <div className="space-y-2 text-sm">*/}
+              {/*    <div className="flex justify-between">*/}
+              {/*      <span className="text-gray-600">Your Chirps</span>*/}
+              {/*      <span className="font-medium">{feedData?.total || 0}</span>*/}
+              {/*    </div>*/}
+              {/*    <div className="flex justify-between opacity-50">*/}
+              {/*      <span className="text-gray-600">Following</span>*/}
+              {/*      <span className="font-medium">0</span>*/}
+              {/*    </div>*/}
+              {/*    <div className="flex justify-between opacity-50">*/}
+              {/*      <span className="text-gray-600">Followers</span>*/}
+              {/*      <span className="font-medium">0</span>*/}
+              {/*    </div>*/}
+              {/*  </div>*/}
+              {/*</div>*/}
             </div>
           )}
         </div>
@@ -84,12 +84,12 @@ function HomePage() {
         {/* Main Column - Chirp Form and Feed */}
         <div className="lg:col-span-2">
           {/* Page Header */}
-          <div className="mb-6">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Home</h1>
-            <p className="text-gray-600">
-              Welcome back, {currentUser?.display_name}! What's on your mind?
-            </p>
-          </div>
+          {/*<div className="mb-6">*/}
+          {/*  <h1 className="text-2xl font-bold text-gray-900 mb-2">Home</h1>*/}
+          {/*  <p className="text-gray-600">*/}
+          {/*    Welcome back, {currentUser?.display_name}! What's on your mind?*/}
+          {/*  </p>*/}
+          {/*</div>*/}
 
           {/* Chirp Form */}
           <div className="mb-6">

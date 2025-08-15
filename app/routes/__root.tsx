@@ -32,7 +32,7 @@ export const Route = createRootRoute({
                   to="/" 
                   className="text-xl font-bold text-blue-600 hover:text-blue-700"
                 >
-                  tan-chirper
+                  Chirper
                 </Link>
               </div>
               <div className="flex items-center space-x-4">

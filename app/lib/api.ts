@@ -231,8 +231,9 @@ export class ApiClient {
   }
 
   async unlikeChirp(chirpId: string) {
-    return this.makeRequest(`/likes/${chirpId}`, {
+    return this.makeRequest('/likes', {
       method: 'DELETE',
+      body: JSON.stringify({ chirp_id: chirpId }),
     });
   }
 

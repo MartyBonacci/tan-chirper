@@ -39,7 +39,7 @@ export async function getChirpWithProfile(id: string, currentUserId?: string): P
          'display_name', p.display_name,
          'avatar_url', p.avatar_url
        ) as profile,
-       COALESCE(like_counts.like_count, 0) as like_count,
+       COALESCE(like_counts.like_count, 0)::integer as like_count,
        CASE 
          WHEN $2 IS NOT NULL AND user_likes.profile_id IS NOT NULL THEN true
          ELSE false
@@ -86,7 +86,7 @@ export async function getFeedChirps(currentUserId?: string, limit = 20, offset =
          'display_name', p.display_name,
          'avatar_url', p.avatar_url
        ) as profile,
-       COALESCE(like_counts.like_count, 0) as like_count,
+       COALESCE(like_counts.like_count, 0)::integer as like_count,
        CASE 
          WHEN $1 IS NOT NULL AND user_likes.profile_id IS NOT NULL THEN true
          ELSE false

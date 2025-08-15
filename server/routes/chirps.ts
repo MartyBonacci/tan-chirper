@@ -11,6 +11,7 @@ import {
   updateChirp,
   deleteChirp
 } from '../db/queries/chirps.js';
+import { getLikeStats } from '../db/queries/likes.js';
 
 const router = Router();
 
@@ -183,6 +184,27 @@ router.get('/profile/:profileId', optionalAuth, validateParams(ProfileIdSchema),
     res.status(500).json({
       error: 'Failed to get chirps',
       message: 'Unable to retrieve chirps at this time'
+    });
+  }
+});
+
+// GET /api/chirps/:id/likes - Get like stats for a specific chirp
+router.get('/:id/likes', optionalAuth, validateParams(ChirpIdSchema), async (req, res) => {
+  try {
+    const currentUserId = (req as AuthenticatedRequest).user?.profileId;
+    const stats = await getLikeStats(req.params.id, currentUserId);
+    
+    res.json({
+      chirp_id: stats.chirp_id,
+      like_count: stats.like_count,
+      is_liked: stats.is_liked
+    });
+    
+  } catch (error) {
+    console.error('Get chirp like stats error:', error);
+    res.status(500).json({
+      error: 'Failed to get like stats',
+      message: 'Unable to retrieve like information at this time'
     });
   }
 });
